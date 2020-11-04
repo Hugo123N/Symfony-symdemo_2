@@ -1,0 +1,54 @@
+   
+<script>
+    $(function () {
+
+        $('.linksclicked').on('click', function (event) {
+           
+            $.ajax({
+                url: "{{ path('api/productsByIdCate')}}",
+                type: "post",
+                data: {
+                    id_category: $(this).attr('data-id')
+                },
+                dataType: 'json',
+            }).done(function (response) {
+                console.log(response);
+
+                if (response.status === 'success') {
+                    $('#reload').html(response.html);
+                }
+
+            });
+        });
+
+        
+        // check price:
+        $('#checkPrice input[type="checkbox"]').on('click', function() {
+            $('#checkPrice').submit();
+        });
+        $('#checkPrice').on('submit', function (event) {
+            event.preventDefault(); // noLoad
+
+            var form_element = this; // gan gia ri tu cac input vao object nay
+            var formData = new FormData(form_element);
+
+            $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+
+            }).done(function (response) {
+
+            if(response.status === 'success') {
+                $('#reload').html(response.html);
+            }
+
+            });
+        });
+
+
+    });
+</script>

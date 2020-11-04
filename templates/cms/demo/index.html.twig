@@ -1,0 +1,58 @@
+{# {% include 'header.html.twig' %} #}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive Multipurpose HTML5 Business Template">
+    <meta name="author" content="Shreethemes">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <title>comment</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="row float-center">
+                    <div class="col-md-10">
+                        <div class="custom-form mt-30">
+                            <div id="message"></div>
+                            <form method="post" action="{{ path('comment') }}" name="contact-form" id="contact-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label">
+                                            <input name="name" id="name" type="text" class="form-control" placeholder="Your name :">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label">
+                                            <input name="email" id="email" type="email" class="form-control" placeholder="Your email :">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label">
+                                            <input name="subject" id="subject" class="form-control" placeholder="Your subject :">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label">
+                                            <textarea name="comments" id="comments" rows="3" class="form-control" placeholder="Enter message :"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="submit" id="submit" name="send" class="btn btn-primary" value="Send Message">
+                                        <div id="simple-msg"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</body
+
+{# {% include 'footer.html.twig' %} #}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        a{
+            text-decoration: none;
+            color: goldenrod;
+        }
+    </style>
+</head>
+<body>
+    {% if name ?? true %}
+        <h3>Chào tài khoản {{ email }},</h3>
+        <p>cảm ơn bạn đã follow website của chúng tôi</p>
+    {% else %}
+        <h3>chào {{ name }},</h3>
+        <p>chúc mừng bạn đã đăng ký thành công tài khoản với email là: {{ email }}</p>
+    {% endif %}
+    <p>để tiếp tục mua hàng bạn vui lòng truy cập vào link bên dưới</p>
+    <a href="http://homnaydicode2.com/">nhap-vao-link-duoi-day</a>
+    <br>
+    =================================
+    <p>Xin cảm ơn</p>
+</body>
+</html>

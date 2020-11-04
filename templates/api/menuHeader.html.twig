@@ -1,0 +1,145 @@
+<div class="header-top">
+	<div class="wrap">
+		<div class="header-top-left">
+			<div class="box">
+				<select tabindex="4" class="dropdown" name="forma" onchange="location = this.value;">
+					<option selected value="" class="label">{{ "Language"|trans }} :</option>
+					<option class="label" value="{{ path(app.request.attributes.get('_route', 'home'), app.request.attributes.get('_route_params', []) | merge({_locale: 'vi'})) }}">Tiếng Việt</option>
+					<option class="label" value="{{ path(app.request.attributes.get('_route', 'home'), app.request.attributes.get('_route_params', []) | merge({_locale: 'en'})) }}">English</option>
+				</select>
+			</div>
+			<div class="box1">
+				<select tabindex="4" class="dropdown">
+					<option value="" class="label" value="">{{ "Currency"|trans }} :</option>
+					<option value="1">$ Dollar</option>
+					<option value="2">€ Euro</option>
+				</select>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="cssmenu">
+			<ul>
+				<li class="active"><a href="login.html">{{ "Account"|trans }}</a></li> |
+				<li><a href="checkout.html">{{ "Wishlist"|trans }}</a></li> |
+				<li><a href="checkout.html">{{ "Checkout"|trans }}</a></li> |
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<li><a href="{{ path('app_update_account') }}">{{ app.user.name }}</a></li>
+					<li><a href="{{ path('app_logout_user') }}">{{ "Log Out"|trans }}</a></li>
+				{% else %}
+				<li><a href="{{ path('app_login_user') }}">{{ "Log In"|trans }}</a></li> |
+				<li><a href="{{ path('app_register_user') }}">{{ "Sign Up"|trans }}</a></li>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="header-bottom">
+	<div class="wrap">
+		<div class="header-bottom-left">
+			<div class="logo">
+				<a href="{{ path('home') }}"><img src="{{ asset('assetsAPI/images/logo.png') }}" alt="" /></a>
+			</div>
+			<div class="menu">
+				<ul class="megamenu skyblue">
+					<li class="active grid"><a href="index.html">{{ "Home"|trans }}</a></li>
+					<li><a class="color4" href="#">{{ "women"|trans }}</a>
+						<div class="megapanel">
+							<div class="row">
+								<div class="col1">
+									<div class="h_nav">
+										<h4>{{ "Contact Lenses"|trans }}</h4>
+										<ul>
+											<li><a href="womens.html">{{ "Daily-wear soft lenses"|trans }}</a></li>
+											<li><a href="womens.html">{{ "Extended-wear"|trans }}</a></li>
+											<li><a href="womens.html"> {{ "Anti Reflective"|trans }}</a></li>
+											<li><a href="womens.html">{{ "Planned replacement"|trans }}</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col1">
+									<div class="h_nav">
+										<h4>{{ "Sun Glasses"|trans }}</h4>
+										<ul>
+											<li><a href="womens.html">{{ "Heart-Shaped"|trans }}</a></li>
+											<li><a href="womens.html">{{ "Square-Shaped"|trans }}</a></li>
+											<li><a href="womens.html">{{ "Round-Shaped"|trans }}</a></li>
+											<li><a href="womens.html">{{ "Round-Shaped"|trans }}</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li><a class="color5" href="#">{{ "Men"|trans }}</a>
+						<div class="megapanel">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>{{ "Contact Lenses"|trans }}</h4>
+									<ul>
+										<li><a href="mens.html">{{ "Daily-wear soft lenses"|trans }}</a></li>
+										<li><a href="mens.html">{{ "Extended-wear"|trans }}</a></li>
+										<li><a href="mens.html">{{ "Anti Reflective"|trans }} </a></li>
+										<li><a href="mens.html">{{ "Planned replacement"|trans }}</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>{{ "Sun Glasses"|trans }}</h4>
+									<ul>
+										<li><a href="mens.html">{{ "Heart-Shaped"|trans }}</a></li>
+										<li><a href="mens.html">{{ "Square-Shaped"|trans }}</a></li>
+										<li><a href="mens.html">{{ "Round-Shaped"|trans }}</a></li>
+										<li><a href="mens.html">{{ "Oval-Shaped"|trans }}</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li><a class="color6" href="other.html">{{ "Accessories"|trans }}</a></li>
+					<li><a class="color7" href="other.html">{{ "Purchase"|trans }}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="header-bottom-right">
+			<!-- searching ======================= -->
+			<form method="POST" action="{{ path('api/searchProducts') }}">
+				<div class="search">
+					<input type="text" name="search_content" class="textbox" value="">
+					<input type="submit" value="submited" id="submit" name="submit">
+				</div>
+			</form>
+			<div class="tag-list">
+				<ul class="icon1 sub-icon1 profile_img">
+					<li><a class="active-icon c1" href="#"> </a>
+						<ul class="sub-icon1 list">
+							<li>
+								<h3>change with trends</h3><a href=""></a>
+							</li>
+							<li>
+								<p>brings the latest products <a href=""></a></p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="icon1 sub-icon1 profile_img">
+					<li><a class="active-icon c2" href="#"> </a>
+						<ul class="sub-icon1 list">
+							<li>
+								<h3>best quality</h3><a href=""></a>
+							</li>
+							<li>
+								<p>Best quality guarantee for you <a href="">go now</a></p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="last">
+					<li><a href="#">{{ "Cart"|trans }}(0)</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

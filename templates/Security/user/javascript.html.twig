@@ -1,0 +1,96 @@
+
+<script>
+    /* no load page when submit*/
+    $(document).ready(function () {
+
+        $('#formSubmited').on('submit', function (event) {
+            event.preventDefault(); // <- avoid
+
+            var form_element = this; // gan gia ri tu cac input vao object nay
+            var formData = new FormData(form_element);
+
+            $.ajax({
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                beforeSend: function () {
+                    console.log('show loading');
+                    $('#overlay').fadeIn();
+                }
+
+            }).done(function (response) {
+                // goi ham:
+                console.log(response)
+                handleResponse(response.notificate);
+
+            }).always( function() {
+                console.log('stop loading');
+                $('#overlay').fadeOut();
+            });
+
+        });
+
+    });
+
+    function handleResponse(notificate)
+    {
+        console.log(notificate);
+        if (notificate.status === 'failed') {
+            // loi validate:
+            if (notificate.messages) {
+                alert(JSON.stringify(notificate.messages));
+                // thong bao o form:
+                if (notificate.messages.userName) {
+                    document.getElementById("name").innerHTML = notificate.messages.userName;
+                } else { document.getElementById("name").innerHTML = ""; }
+                if (notificate.messages.email) {
+                    document.getElementById("email").innerHTML = notificate.messages.email;
+                } else { document.getElementById("email").innerHTML = ""; }
+                if (notificate.messages.password) {
+                    document.getElementById("password").innerHTML = notificate.messages.password;
+                } else { document.getElementById("password").innerHTML = ""; }
+                if (notificate.messages.rePassword) {
+                    document.getElementById("re_password").innerHTML = notificate.messages.rePassword;
+                } else { document.getElementById("re_password").innerHTML = ""; }
+            }
+            // loi user or registered:
+            if (notificate.message) {
+                swal(
+                    'Oops...',
+                    notificate.message,
+                    'error'
+                );
+                // thong bao o form:
+                document.getElementById("name").innerHTML = "";
+                document.getElementById("email").innerHTML = "";
+                document.getElementById("password").innerHTML = "";
+                document.getElementById("re_password").innerHTML = "";
+            }
+            // loi trong service:
+            if (notificate.registerResult || notificate.sendMailResult) {
+                alert(notificate.registerResult.message + 'và' + notificate.sendMailResult.message);
+            }
+        }
+        else {
+            swal({
+                title: notificate.subject,
+                text: notificate.message,
+                icon: "success",
+                buttons: ["Back Home", "GoTo Login"],
+                dangerMode: false,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = notificate.href;
+                } else {
+                    window.location.href = '/';
+                }
+            });
+            
+        }
+        
+    }
+</script>

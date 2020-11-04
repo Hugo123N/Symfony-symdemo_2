@@ -1,14 +1,69 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+        app_admin_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+
+
+        # cau hinh cho Authetication Admin:
+        main_admin:
             anonymous: lazy
-            provider: users_in_memory
+            provider: app_admin_provider
+            # yeu cau phai co de tro rieng toi Auth
+            pattern: ^/admin
+            form_login:
+                login_path: app_login_admin
+                check_path: app_login_admin
+                default_target_path: listCategories
+            guard:
+                authenticators:
+                    - App\Security\Admin\AdminLoginFormAuthenticator
+                entry_point: App\Security\Admin\AdminLoginFormAuthenticator
+            logout:
+                path: app_logout_admin
+                # where to redirect after logout
+                target: app_login_admin
+        
+
+        # cau hinh cho Authetication User:
+        main_user:
+            anonymous: lazy
+            provider: app_user_provider
+            form_login:
+                login_path: app_login_user
+                check_path: app_login_user
+                default_target_path: home
+            access_denied_handler: App\Security\User\CmsAccessDeniedHandler
+            guard:
+                authenticators:
+                    - App\Security\User\LoginFormAuthenticator
+                entry_point: App\Security\User\LoginFormAuthenticator
+            logout:
+                path: app_logout_user
+                # where to redirect after logout
+                target: home
+                
+        # vai tro phan cap:
+        # role_hierarchy:
+            # ROLE_USER: ROLE_USER
+            # ROLE_ADMIN: ROLE_USER
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -19,5 +74,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/cms, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/user, roles: IS_AUTHENTICATED_ANONYMOUSLY }

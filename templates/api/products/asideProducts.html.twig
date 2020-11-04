@@ -1,0 +1,56 @@
+<div class="rsidebar span_1_of_left">
+	<h5 class="m_1">{{ "Categories"|trans }}</h5>
+
+	<ul class="kids">
+		{% for category in allCategories %}
+		<li class="last">
+			<a class="linksclicked" style="font-size: 18px;" href="javascript:void(0)"
+				data-id="{{ category.id }}">{{ category.name }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+	<section class="sky-form">
+		<h4>Price</h4>
+		<div class="row row1 scroll-pane">
+				<form id="checkPrice" method="POST" action="{{ path('api/productsByPrice') }}">
+					<div class="col col-4">
+						<label class="checkbox"><input value="0" checked class="checkPrice" type="checkbox" name="checkbox"><i></i>ALL PRO</label>
+					</div>
+					<div class="col col-4">
+						<label class="checkbox"><input value="1" type="checkbox" name="checkbox1"><i></i>PRO 1M - 3M</label>
+						<label class="checkbox"><input value="2" type="checkbox" name="checkbox2"><i></i>PRO 4M - 7M</label>
+						<label class="checkbox"><input value="3" type="checkbox" name="checkbox3"><i></i>PRO 8 - 12M</label>
+						<label class="checkbox"><input value="4" type="checkbox" name="checkbox4"><i></i>PRO > 12M</label>
+					</div>
+			</form>
+		</div>
+	</section>
+
+	<section class="sky-form">
+		<h4>Colors</h4>
+		<ul class="color-list">
+			<li><a href="#"> <span class="color1"> </span>
+					<p class="red">{{ 'Red'|trans }}</p>
+				</a></li>
+			<li><a href="#"> <span class="color2"> </span>
+					<p class="red">Green</p>
+				</a></li>
+			<li><a href="#"> <span class="color3"> </span>
+					<p class="red">Blue</p>
+				</a></li>
+			<li><a href="#"> <span class="color4"> </span>
+					<p class="red">Yellow</p>
+				</a></li>
+			<li><a href="#"> <span class="color5"> </span>
+					<p class="red">Violet</p>
+				</a></li>
+			<li><a href="#"> <span class="color6"> </span>
+					<p class="red">Orange</p>
+				</a></li>
+			<li><a href="#"> <span class="color7"> </span>
+					<p class="red">Gray</p>
+				</a></li>
+		</ul>
+	</section>
+</div>

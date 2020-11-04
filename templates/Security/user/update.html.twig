@@ -1,0 +1,53 @@
+{% extends 'api/base.html.twig' %}
+
+{% block title %}Update Account{% endblock %}
+
+{% block main_content %}
+
+<div class="login">
+    <div class="wrap">
+        <div class="col_1_of_login span_1_of_login">
+            <div class="login-title">
+                <h4 class="title">Update Account</h4>
+                <div id="loginbox" class="loginbox">
+                    <form action="{{ path('updateAccount') }}" method="post" id="formSubmited">
+
+                        <fieldset class="input">
+
+                            <p id="login-form-password">
+                                <label for="modlgn_passwd">Old Password</label>
+                                <input name="old_password" id="inputPassword" required type="password" class="inputbox" size="18"
+                                    autocomplete="off" required>
+                                {# yeu cau phai co #}
+                                <input type="hidden" name="name" value="{{ app.user.name }}">
+                                <input type="hidden" name="email" value="{{ app.user.email }}">
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            </p>
+                            <p id="login-form-password">
+                                <label for="modlgn_passwd">New Password</label>
+                                <input name="new_password" id="inputPassword" required type="password" class="inputbox" size="18"
+                                    autocomplete="off" required>
+                            </p>
+                            <p id="login-form-password">
+                                <label for="modlgn_passwd">Re-New Password</label>
+                                <input name="re_password" id="inputPassword" required type="password" class="inputbox" size="18"
+                                    autocomplete="off" required>
+                            </p>
+                            
+                            <div class="remember">
+                                <p id="login-form-remember">
+                                    <label for="modlgn_remember"><a href="#">Forget Your Password ? </a></label>
+                                </p>
+                                <input type="submit" name="Submit" class="button" value="Update">
+                                <div class="clear"></div>
+                                {% include "security/javascript.html.twig" %}
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endblock %}

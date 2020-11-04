@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('assets/css/login_admin.css') }}">
+    <!--bosstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-12">
+            <div class="col-4 centerBlock">
+                <form method="POST">
+                    <div class="imgcontainer">
+                        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+                    </div>
+                    <!--bao loi (neu co) -->
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            Your Account: {{ app.user.username }} not a admin,<a href="{{ path('app_logout_admin') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    {% if (is_granted('ROLE_ADMIN') == false ) %}
+                        <div class="container">
+                            <label for="uname"><b>email</b></label>
+                            <input value="{{ last_username }}" type="text" placeholder="Enter Email" name="email" required size="18">
+
+                            <label for="psw"><b>Password</b></label>
+                            <input  type="password" placeholder="Enter Password" name="password" required size="18">
+
+                            <!--csrf_token-->
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            <button name="submit" type="submit">Login</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+
+                        <div class="container" style="background-color:#f1f1f1">
+                            <button type="button" class="cancelbtn">Cancel</button>
+                            <span class="psw">Forgot <a href="#">password?</a></span>
+                        </div>
+                    {% endif %}
+                </form>
+            </div>   
+        </div>
+    </div>
+</body>
+
+</html>

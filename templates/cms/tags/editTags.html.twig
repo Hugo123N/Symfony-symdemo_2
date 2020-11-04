@@ -1,0 +1,58 @@
+{% extends "cms/base.html.twig" %}
+
+{% block title %}Edit Tags{% endblock %}
+
+{% block main_content %}
+<!-- Main content -->
+<section class="content-header">
+    <h1>
+        Data Tables
+        <small>advanced tables</small>
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Tags</h3>
+                </div>
+                <!-- /.box-header ===============================================================-->
+                <!-- form start -->
+                <form id="formSubmited" role="form" method="POST" action="{{ path('editTags') }}"
+                    enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name Tags</label>
+                            <input name="id_tag" type="hidden" class="form-control" id="input-name"
+                                value="{{ tagById.id }}">
+                            <input name="name" type="text" class="form-control" id="input-name"
+                                value="{{ tagById.tagName }}">
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Check me out
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+        <!-- /.box =================================================================-->
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+{% endblock %}

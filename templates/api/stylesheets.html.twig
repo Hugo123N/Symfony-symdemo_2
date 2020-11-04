@@ -1,0 +1,45 @@
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %}</title>
+    <!-- pageLoading -->
+    <link rel="stylesheet" href="{{ asset('loadingPage/style_loader.css') }}">
+    <!-- General-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{{ asset('assetsAPI/css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('assetsAPI/css/form.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{{ asset('assetsAPI/js/jquery1.min.js') }}"></script>
+    <!-- start menu -->
+    <link href="{{ asset('assetsAPI/css/megamenu.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ asset('assetsAPI/js/megamenu.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".megamenu").megamenu();
+        });
+    </script>
+    <!--start slider -->
+    <link rel="stylesheet" href="{{ asset('assetsAPI/css/fwslider.css') }}" media="all">
+    <script src="{{ asset('assetsAPI/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assetsAPI/js/css3-mediaqueries.js') }}"></script>
+    <script src="{{ asset('assetsAPI/js/fwslider.js') }}"></script>
+    <!--end slider -->
+    <script src="{{ asset('assetsAPI/js/jquery.easydropdown.js') }}"></script>
+    <!-- swal -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.css" />
+
+<style>
+    .flash-notice {
+        margin: 8px;
+        padding-left: 8px;
+        width: 150px;
+        background-color: rgb(113, 241, 113)
+    }
+
+    .hide {
+        opacity: 0;
+        transition: opacity 1000ms;
+    }
+</style>

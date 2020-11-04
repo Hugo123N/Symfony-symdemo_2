@@ -1,0 +1,80 @@
+{% extends "cms/base.html.twig" %}
+
+{% block title %}List Products{% endblock %}
+
+{% set product_upload_image_folder = base_upload_folder ~ '/' ~ base_product_folder ~ '/' ~ base_images_folder %}
+
+{% block main_content %}
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">list Products</h3>
+        </div>
+        <!-- /.box-header ======================================================= -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-lg-6 col-6"></div>
+
+            <div class="col-lg-6 col-6">
+              <form id="formSearch" role="form" method="POST" action="{{ path('searchProducts') }}">
+                <div class="form-group float-right">
+                  <label for="search">Search Products: </label>
+                  <input type="search" name="searchContent" id="searchContent">
+                  <select name="optionSearch" id="optionSearch">
+                    <option value="0">Name</option>
+                    <option value="1">Price</option>
+                    <option value="1">Sale</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>images</th>
+                <th>price</th>
+                <th>description</th>
+                <th>sale</th>
+                <th>show/hiden</th>
+                <th>Categories</th>
+                <th>created</th>
+                <th>updated</th>
+                <th>edit</th>
+                <th>remove</th>
+              </tr>
+            </thead>
+
+            <tbody id="container">
+              {% include "cms/products/product_rows.html.twig" %}
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <th>name</th>
+                <th>images</th>
+                <th>price</th>
+                <th>description</th>
+                <th>sale</th>
+                <th>show/hiden</th>
+                <th>Categories</th>
+                <th>created</th>
+                <th>updated</th>
+                <th>edit</th>
+                <th>remove</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>
+{% endblock %}

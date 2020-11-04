@@ -1,0 +1,24 @@
+{% extends "api/base.html.twig" %}
+{% block title %}All Products{% endblock %}
+
+{% block main_content %}
+<div class="mens">    
+    <div class="main">
+		{# CONTENT PRODUCTS #}
+		<div id="reload" class="wrap">
+			{% include "api/products/contentProducts.html.twig" %}
+		</div>
+		{# ASIDE #}
+		{% include "api/products/asideProducts.html.twig" %}
+		
+		<div class="clear"></div>
+		</div>
+		</div>
+	</div>
+	<script src="{{ asset('assetsAPI/js/jquery.easydropdown.js') }}"></script>
+
+{% endblock %}
+
+{% block javascript %}
+	{% include "api/products/javascript.html.twig" %}
+{% endblock %}

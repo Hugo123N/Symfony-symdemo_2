@@ -3,3 +3,13 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: null
+    globals:
+        gg_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+        base_upload_folder: '%env(BASE_UPLOAD_FOLDER)%'
+        base_product_folder: '%env(PRODUCT_UPLOAD_FOLDER)%'
+        base_images_folder: '%env(PRODUCT_IMAGE_FOLDER)%'
+        google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+        google_recaptcha_secret_key: '%env(GOOGLE_RECAPTCHA_SECRET_KEY)%'
+    form_themes:
+        # - 'api/form/custom_types.html.twig'
+        - 'api/home/index.html.twig'

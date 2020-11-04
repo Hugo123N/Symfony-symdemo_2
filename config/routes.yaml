@@ -1,3 +1,15 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+cms_comment:
+  path: /comment
+  controller: App\Controller\Cms\CommentController::index
+
+cms_demo:
+  path: /demo
+  controller: App\Controller\DemoController::index
+
+cms_dashboard:
+  path: /admin
+  controller: App\Controller\Security\Admin\SecurityAdminController::login

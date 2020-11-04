@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include "api/stylesheets.html.twig" %}
+    </head>
+    <body>
+        {% include "api/loading.html.twig" %}
+        {% include "api/menuHeader.html.twig" %}
+
+        {% block main_content %}{% endblock %}
+
+        <!-- =================== -->
+        {% include "api/footer.html.twig" %}
+    <!-- =================== -->
+    {% block javascript %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'api/base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block main_content %}
+
+<div class="login">
+    <div class="wrap">
+        <div class="col_1_of_login span_1_of_login">
+            <div class="login-title">
+                <h4 class="title">Login</h4>
+                <div id="loginbox" class="loginbox">
+                    <form action="" method="post" name="login" id="login-form">
+                        {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout_user') }}">Logout</a>
+                        </div>
+                        {% endif %}
+
+                        <fieldset class="input">
+                            <p id="login-form-username">
+                                <label for="modlgn_username">Email</label>
+                                <input value="{{ last_username }}" name="email" id="inputEmail" type="text" class="inputbox" size="18"
+                                    required autofocus>
+                            </p>
+                            <p id="login-form-password">
+                                <label for="modlgn_passwd">Password</label>
+                                <input name="password" id="inputPassword" type="password" class="inputbox" size="18"
+                                    autocomplete="off" required>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            </p>
+                            {#
+                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                See https://symfony.com/doc/current/security/remember_me.html
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Remember me
+                                    </label>
+                                </div>
+                            #}
+                            <div class="remember">
+                                <p id="login-form-remember">
+                                    <label for="modlgn_remember"><a href="#">Forget Your Password ? </a></label>
+                                </p>
+                                <input type="submit" name="Submit" class="button" value="Login">
+                                <div class="clear"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endblock %}

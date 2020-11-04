@@ -1,0 +1,43 @@
+{% for product in products %}
+{% set product_image_url = product_upload_image_folder ~ '/' ~ product.images %}
+<tr>
+    <td>{{ product.name }}</td>
+    <td><img style="width:100px" src="{{ asset(product_image_url) }}" </td> <td>{{ product.price }}</td>
+    <td>{{ product.description }}</td>
+    <td>
+        {% if product.priority == 1 %}
+        On Sale
+        {% else %}
+        Off sale
+        {% endif %}
+    </td>
+    <td>
+        {% if product.status == 1 %}
+        show
+        {% else %}
+        hiden
+        {% endif %}
+    </td>
+    <td>
+        {{ product.category.name }}
+    </td>
+    <td>
+        {{ product.createdAt|date("m/d/Y") }}
+    </td>
+    <td>
+        {{ product.updatedAt|date("m/d/Y") }}
+    </td>
+
+    <td>
+        <a href="{{ path('showEdit', { id: product.id }) }}">Edit</a>
+    </td>
+
+    <td>
+        <form method="POST" action="{{ path('removeProducts') }}">
+            <input hidden type="number" name="id_product" value="{{ product.id }}">
+            <input hidden type="text" name="imagesName" value="{{ product.images }}">
+            <input type="submit" value="remove">
+        </form>
+    </td>
+</tr>
+{% endfor %}

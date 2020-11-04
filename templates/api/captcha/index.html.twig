@@ -1,0 +1,27 @@
+<div class="frcaptcha">
+    <span>Security Code</span>
+    <a onclick="refreshCode()" href="javascript:void(0);">
+        <i id="fa-refresh" class="fa fa-refresh fa-lg fa-fw "></i>
+    </a>
+    <div id="parent-code-image" style="width: 500px; height: 30px; display: inline;">
+        <i class="fas fa-circle-notch fa-spin"></i>
+        <img src="{{ path('render_captcha') }}" alt="CAPTCHA" id="refesh-code">
+    </div>
+    <input class="input-default ip-code" type="text" name="validate_string" placeholder="">
+</div>
+
+<script>
+    // refresh captcha:
+    function refreshCode() {
+        console.log('here');
+        var element = document.getElementById('fa-refresh');
+        var parent = document.getElementById('parent-code-image');
+        var temp = document.getElementById('refesh-code');
+        
+        element.classList.add("fa-spin");
+        setTimeout(function() {
+        temp.setAttribute('src', "{{ path('render_captcha') }}?v=" + Math.floor(Math.random() * 100));
+        element.classList.remove("fa-spin");
+        }, 1500);
+    }
+</script>

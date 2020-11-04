@@ -1,0 +1,46 @@
+{% extends "api/base.html.twig" %}
+{% block title %}
+Register
+{% endblock %}
+{% block main_content %}
+<style>
+    span {
+        color: rgb(197, 56, 31);
+    }
+</style>
+<div class="register_account">
+    <div class="wrap">
+        <h4 class="title">Create an Account</h4>
+        <form id="formSubmited" method="POST" action="{{ path('createAccount') }}">
+            <div class="col_1_of_2 span_1_of_2">
+                <div>
+                    <input name="name" type="text" placeholder="Name">
+                    <span id="name"></span>
+                </div>
+                <div>
+                    <input name="email" type="text" placeholder="email">
+                    <span id="email"></span>
+                </div>
+                <div>
+                    <input name="password" type="text" placeholder="password">
+                    <span id="password"></span>
+                </div>
+                <div>
+                    <input name="re_password" type="text" placeholder="re-password"><br>
+                    <span id="re_password"></span>
+                </div>
+                <br>
+                <div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </div>
+                <button class="grey">Submit</button>
+                <p class="terms">By clicking 'Create Account' you agree to the <a href="#">Terms &amp; Conditions</a>.
+                </p>
+            </div>
+            <div class="clear"></div>
+            <!-- javascript register -->
+            {% include "security/user/javascript.html.twig" %}
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "api/base.html.twig" %}
+{% block title %} Detail Product {% endblock %}
+
+{# CONTENT PRODUCTS #}
+{% block main_content %}
+    {% include "api/detailProduct/contentDetail.html.twig" %}
+{% endblock %}
+
+{% block javascript %}
+	{% include "api/detailProduct/javascript.html.twig" %}
+{% endblock %}
